@@ -67,12 +67,12 @@ resource "aws_lambda_function" "helloWorld" {
   source_code_hash = filebase64sha256(var.JAR_PATH)
 }
 
-resource "aws_lambda_function_url" "hello_world" {
+resource "aws_lambda_function_url" "helloWorld" {
   function_name      = "helloWorld"
   authorization_type = "NONE"
 }
 
 output "function_url" {
   description = "Function URL."
-  value       = aws_lambda_function_url.hello_world.function_url
+  value       = aws_lambda_function_url.helloWorld.function_url
 }

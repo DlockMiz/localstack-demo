@@ -33,7 +33,5 @@ build/
 .vscode/
 
 # Terraform
-/.terraform.lock.hcl
-/.terraform.tfstate.lock.info
-/localstack_providers_override.tf
-/terraform.tfstate
+*/terraform
+*/.terraform
