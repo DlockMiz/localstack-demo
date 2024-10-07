@@ -13,10 +13,6 @@ target/
 .springBeans
 .sts4-cache
 
-# Terraform
-*.terraform
-*terraform
-
 ### IntelliJ IDEA ###
 .idea
 *.iws
@@ -35,3 +31,9 @@ build/
 
 ### VS Code ###
 .vscode/
+
+# Terraform
+/.terraform.lock.hcl
+/.terraform.tfstate.lock.info
+/localstack_providers_override.tf
+/terraform.tfstate
