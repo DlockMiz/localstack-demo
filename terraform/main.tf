@@ -1,6 +1,11 @@
-variable "JAR_PATH" {
+variable "hello-world" {
   type    = string
-  default = "target/demo-0.0.1-SNAPSHOT-aws.jar"
+  default = "../hello-world/target/hello-world-0.0.1-SNAPSHOT-aws.jar"
+}
+
+variable "hello-world-again" {
+  type    = string
+  default = "../hello-world-again/target/hello-world-again-0.0.1-SNAPSHOT-aws.jar"
 }
 
 variable "STAGE" {
@@ -58,13 +63,13 @@ resource "aws_iam_role" "lambda-execution-role" {
 }
 
 resource "aws_lambda_function" "helloWorld" {
-  filename      = var.JAR_PATH
+  filename      = var.hello-world
   function_name = "helloWorld"
   role          = aws_iam_role.lambda-execution-role.arn
   handler       = "org.springframework.cloud.function.adapter.aws.FunctionInvoker::handleRequest"
   runtime       = "java17"
   timeout       = 30
-  source_code_hash = filebase64sha256(var.JAR_PATH)
+  source_code_hash = filebase64sha256(var.hello-world)
 }
 
 resource "aws_lambda_function_url" "helloWorld" {
@@ -75,4 +80,24 @@ resource "aws_lambda_function_url" "helloWorld" {
 output "function_url" {
   description = "Function URL."
   value       = aws_lambda_function_url.helloWorld.function_url
+}
+
+resource "aws_lambda_function" "helloWorldAgain" {
+  filename      = var.hello-world-again
+  function_name = "helloWorldAgain"
+  role          = aws_iam_role.lambda-execution-role.arn
+  handler       = "org.springframework.cloud.function.adapter.aws.FunctionInvoker::handleRequest"
+  runtime       = "java17"
+  timeout       = 30
+  source_code_hash = filebase64sha256(var.hello-world-again)
+}
+
+resource "aws_lambda_function_url" "helloWorldAgain" {
+  function_name      = "helloWorldAgain"
+  authorization_type = "NONE"
+}
+
+output "function_url_again" {
+  description = "Function URL."
+  value       = aws_lambda_function_url.helloWorldAgain.function_url
 }

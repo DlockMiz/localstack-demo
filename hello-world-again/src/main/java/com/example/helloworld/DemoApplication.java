@@ -1,4 +1,4 @@
-package com.example.demo;
+package com.example.helloworld;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -14,8 +14,8 @@ public class DemoApplication {
 	}
 
 	@Bean
-	public Function<String, String> helloWorld() {
-		return value -> "Hello World";
+	public Function<String, String> helloWorldAgain() {
+		return value -> "Hello World Again";
 	}
 
 }

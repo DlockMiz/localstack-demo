@@ -33,7 +33,5 @@ build/
 .vscode/
 
 # Terraform
-*/terraform
-*/.terraform
-.terraform*
-terraform*
+terraform/terraform*
+terraform/.terraform*
